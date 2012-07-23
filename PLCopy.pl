@@ -6,7 +6,6 @@
 #
 ##############################################################
 
-
 # note: we may need to migrate to something like:
 #   http://search.cpan.org/~burak/MP3-M3U-Parser-2.20/lib/MP3/M3U/Parser.pm
 
@@ -23,22 +22,21 @@ my ( $name, $path, $suffix, @suffixlist );
 
 # command line switches
 my $randomise
-  ;  # do we want a random selection of music from the playlist? - Default is no
+    ; # do we want a random selection of music from the playlist? - Default is no
 my $maxfiles = 0;    # limit the maximum number of files copied to the target
-my $genplaylist = 0;    #generate a new playlist with the new absolute paths of the new device
+my $genplaylist =
+    0;  #generate a new playlist with the new absolute paths of the new device
 my @new_playlist;
 
 my $result = GetOptions(
-    "randomise"    => \$randomise,
-    "maxfiles=i" => \$maxfiles,
-    "genplaylist"  => \$genplaylist
+    "randomise"   => \$randomise,
+    "maxfiles=i"  => \$maxfiles,
+    "genplaylist" => \$genplaylist
 );
 
 # get the command line arguments
 $pl   = $ARGV[0];
 $dest = $ARGV[1];
-
-
 
 print "playlist: $pl";
 @flist = pl_Open($pl);
@@ -56,7 +54,7 @@ if ($randomise) {
 #do we need to limit the number of files to copy?
 if ( $maxfiles > 0 ) {
     if ( $maxfiles < @flist ) {
-        @flist = @flist [ 0 .. ($maxfiles -1)];
+        @flist = @flist[ 0 .. ( $maxfiles - 1 ) ];
     }
 }
 
@@ -64,7 +62,7 @@ if ( $maxfiles > 0 ) {
 foreach my $tune (@flist) {
 
     #generate the target name
-    my $target_path = pl_GenTargetPath( $tune, $dest);
+    my $target_path = pl_GenTargetPath( $tune, $dest );
 
     print "\n$target_path";
 
@@ -82,16 +80,15 @@ foreach my $tune (@flist) {
 
     # do we need to create a new playlist?
     if ($genplaylist) {
-      push (@new_playlist, $target_path);
-    	}
- }
+        push( @new_playlist, $target_path );
+    }
+}
 
 # do we need to write the new playlist?
 if (@new_playlist) {
     print "\nPlaylist follows:\n";
     print join "\n", @new_playlist;
-	}
-
+}
 
 exit(0);
 
@@ -101,23 +98,23 @@ sub pl_RandomPL() {
 
     my @randomised_playlist;
 
-    for ( my $i = 0 ; $i < @playlist ; $i++ ) {
+    for ( my $i = 0; $i < @playlist; $i++ ) {
         push @randomised_playlist, $playlist[ rand @playlist ];
     }
     @randomised_playlist;
 }
 
 sub pl_GenTargetPath() {
-    my ( $source, $destination) = @_;
+    my ( $source, $destination ) = @_;
 
     my $target_path;
-    
-    # we need to split the path into it's components and take the last three elements, like this:
-    # artist    len - 3
-    # album     len - 2
-    # track     len - 1
-    # then we can build up a new target path and return it to the caller
-    my ($artist, $album, $title ) = (split /\\/, $source)[-3, -2, -1];
+
+# we need to split the path into it's components and take the last three elements, like this:
+# artist    len - 3
+# album     len - 2
+# track     len - 1
+# then we can build up a new target path and return it to the caller
+    my ( $artist, $album, $title ) = ( split /\\/, $source )[ -3, -2, -1 ];
 
     # build up the new destination path string
     $target_path = $destination . "\\$artist\\$album\\$title";
@@ -148,7 +145,7 @@ sub pl_Open() {
         $media++;
         chomp();
         if (-r) { push( @online, $_ ); $bytes += -s }
-        else { push( @offline, $_ ) }
+        else    { push( @offline, $_ ) }
 
     }
 
