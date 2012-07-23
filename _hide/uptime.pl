@@ -1,0 +1,1 @@
+(`srvinfo` =~ /System Up Time: (.*)$/) and print $1;

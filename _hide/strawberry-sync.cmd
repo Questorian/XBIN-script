@@ -1,0 +1,1 @@
+robocopy c:\strawberry\perl v:\perl /MIR /R:3 /W:2

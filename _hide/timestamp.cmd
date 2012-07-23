@@ -1,0 +1,1 @@
+@perl -MTime::Piece -e "print localtime->datetime, ' ', join(' ', @ARGV)" %*
