@@ -1,0 +1,2 @@
+:: @perl -e "use Time::Piece; $t = localtime; print $t->datetime, ' ', join(' ', @ARGV)" %*
+@perl -MTime::Piece -e "print localtime->datetime, ' ', join(' ', @ARGV)" %*

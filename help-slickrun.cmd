@@ -1,0 +1,1 @@
+@perl -wnl -e "/^\[(.*)\]$/ and print $1" v:\SlickRun\SlickRun.srl | more

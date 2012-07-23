@@ -1,0 +1,89 @@
+use master
+go
+
+-- RESTORE: Student
+RESTORE DATABASE Student from disk = 'c:\temp\DumpAll-20091204\Student_Course_Adhoc_200912041030.db-bak'
+WITH
+
+    MOVE 'Student_Course_D01' TO 'C:\Program Files\Microsoft SQL Server\MSSQL10.SQLSRV01\MSSQL\DATA\Student_D01.ldf',
+    MOVE 'Student_Course_L01' TO 'C:\Program Files\Microsoft SQL Server\MSSQL10.SQLSRV01\MSSQL\DATA\Student_L01.mdf'
+
+RESTORE FILELISTONLY from disk = 'c:\temp\DumpAll-20091204\Student_Course_Adhoc_200912041030.db-bak'
+
+
+-- RESTORE: SCCM
+RESTORE DATABASE SCCM from disk = 'c:\temp\DumpAll-20091204\SCCM_Adhoc_200912041030.db-bak'
+WITH
+
+  MOVE 'SCCM' TO 'C:\Program Files\Microsoft SQL Server\MSSQL10.SQLSRV01\MSSQL\DATA\SCCM_D01.ldf',
+
+  MOVE 'SCCM_log' TO 'C:\Program Files\Microsoft SQL Server\MSSQL10.SQLSRV01\MSSQL\DATA\SCCM_L01.mdf'
+
+-- RESTORE: ReferenceDB
+RESTORE DATABASE ReferenceDB from disk = 'c:\temp\DumpAll-20091204\ReferenceDB_Adhoc_200912041030.db-bak'
+WITH
+
+  MOVE 'ReferenceDB_D01' TO 'C:\Program Files\Microsoft SQL Server\MSSQL10.SQLSRV01\MSSQL\DATA\ReferenceDB_D01.ldf',
+
+  MOVE 'ReferenceDB_L01' TO 'C:\Program Files\Microsoft SQL Server\MSSQL10.SQLSRV01\MSSQL\DATA\ReferenceDB_L01.mdf'
+
+
+
+-- RESTORE: qscde
+RESTORE DATABASE qscde from disk = 'c:\temp\DumpAll-20091204\qscde_Adhoc_200912041030.db-bak'
+WITH
+
+  MOVE 'qscde_D01' TO 'C:\Program Files\Microsoft SQL Server\MSSQL10.SQLSRV01\MSSQL\DATA\qscde_D01.ldf',
+
+  MOVE 'qscde_L01' TO 'C:\Program Files\Microsoft SQL Server\MSSQL10.SQLSRV01\MSSQL\DATA\qscde_L01.mdf'
+
+
+-- RESTORE: qBase
+RESTORE DATABASE qBase from disk = 'c:\temp\DumpAll-20091204\qBase_Adhoc_200912041030.db-bak'
+WITH
+
+  MOVE 'qBase_D01' TO 'C:\Program Files\Microsoft SQL Server\MSSQL10.SQLSRV01\MSSQL\DATA\qBase_D01.ldf',
+
+  MOVE 'qBase_L01' TO 'C:\Program Files\Microsoft SQL Server\MSSQL10.SQLSRV01\MSSQL\DATA\qBase_L01.mdf'
+
+
+
+
+-- RESTORE: Pubs
+RESTORE DATABASE Pubs from disk = 'c:\temp\DumpAll-20091204\Pubs_Adhoc_200912041030.db-bak'
+WITH
+
+  MOVE 'Pubs' TO 'C:\Program Files\Microsoft SQL Server\MSSQL10.SQLSRV01\MSSQL\DATA\Pubs_D01.ldf',
+
+  MOVE 'Pubs_log' TO 'C:\Program Files\Microsoft SQL Server\MSSQL10.SQLSRV01\MSSQL\DATA\Pubs_L01.mdf'
+
+
+
+-- RESTORE: IPTVConf
+RESTORE DATABASE IPTVConf from disk = 'c:\temp\DumpAll-20091204\IPTVConf_Adhoc_200912041030.db-bak'
+WITH
+
+  MOVE 'IPTVConf' TO 'C:\Program Files\Microsoft SQL Server\MSSQL10.SQLSRV01\MSSQL\DATA\IPTVConf_D01.ldf',
+
+  MOVE 'IPTVConf_log' TO 'C:\Program Files\Microsoft SQL Server\MSSQL10.SQLSRV01\MSSQL\DATA\IPTVConf_L01.mdf'
+
+
+
+-- RESTORE: Finance
+RESTORE DATABASE Finance from disk = 'c:\temp\DumpAll-20091204\Finance_Adhoc_200912041030.db-bak'
+WITH
+
+  MOVE 'Finance_D01' TO 'C:\Program Files\Microsoft SQL Server\MSSQL10.SQLSRV01\MSSQL\DATA\Finance_D01.ldf',
+
+  MOVE 'Finance_L01' TO 'C:\Program Files\Microsoft SQL Server\MSSQL10.SQLSRV01\MSSQL\DATA\Finance_L01.mdf'
+
+
+-- RESTORE: DBA
+RESTORE DATABASE DBA from disk = 'c:\temp\DumpAll-20091204\DBA_Adhoc_200912041030.db-bak'
+WITH
+
+  MOVE 'DBA_D01' TO 'C:\Program Files\Microsoft SQL Server\MSSQL10.SQLSRV01\MSSQL\DATA\DBA_D01.ldf',
+
+  MOVE 'DBA_L01' TO 'C:\Program Files\Microsoft SQL Server\MSSQL10.SQLSRV01\MSSQL\DATA\DBA_L01.mdf'
+
+

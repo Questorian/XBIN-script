@@ -1,0 +1,30 @@
+#!/usr/bin/perl
+
+
+local $/;
+$selection = <STDIN>;
+$inline_comment_char = '#';
+$ext = $ARGV[1];
+
+#now we find out what kind of source code file we have
+if ($ext eq "sql") {
+	$inline_comment_char = '--';
+	}
+
+if ($ext eq "cmd") {
+	$inline_comment_char = '::';
+	}
+
+
+
+if ($ARGV[0] eq "-comment")
+{
+   $selection =~ s/^/$inline_comment_char/mg;
+}
+elsif ($ARGV[0] eq "-uncomment")
+{
+   $selection =~ s/^$inline_comment_char//mg;
+}
+
+print $selection;
+

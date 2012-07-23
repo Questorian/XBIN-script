@@ -1,0 +1,1 @@
+@findstr /S  %*  d:\qs\_td\QSDevel\*.pl   d:\qs\_td\QSDevel\*.sql

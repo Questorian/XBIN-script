@@ -1,0 +1,5 @@
+#retrieve the past URL
+
+use LWP::Simple;
+
+print( get( "http://" . $ARGV[0] ) );

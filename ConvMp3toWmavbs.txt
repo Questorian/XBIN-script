@@ -1,0 +1,115 @@
+' Script from Microsoft Windows Media Encoder SDK
+
+' Lines relating to video are remarked out since I'm only doing audio
+' Suggest WSH 2.0
+
+' Create a WMEncoder object.
+
+     WMENC_ENCODER_STARTING = 1
+     WMENC_ENCODER_RUNNING = 2
+     WMENC_ENCODER_PAUSED = 3
+     WMENC_ENCODER_STOPPING = 4
+     WMENC_ENCODER_STOPPED = 5
+
+Dim encoder
+Set encoder = WScript.CreateObject("WMEncEng.WMEncoder")
+
+' Add a new source group to the source group collection.
+' For example, call the source group "SG_1".
+
+Dim srcgrpcoll
+Dim srcgrp
+Set srcgrpcoll = encoder.SourceGroupCollection
+Set srcgrp = srcgrpcoll.Add("SG_1")
+
+' Add video and text streams to the source group.
+
+' Dim vidsrc
+Dim audsrc
+' Set vidsrc = srcgrp.AddSource(2)
+Set audsrc = srcgrp.AddSource(1)
+
+' Choose a profile and add it to the source group.
+' For example, choose the Video for general purpose (128 Kbps) profile.
+' You must loop through the collection to find the profile.
+
+Dim profilecoll
+Dim profile
+Dim i
+' ******************
+' * I changed this routine early on, the original may work ***
+set profilecoll=encoder.ProfileCollection
+For i = 0 to profilecoll.count - 1
+     set profile = profilecoll.item(i)
+     if profile.name = "Audio for CD-quality transparency (128 Kbps stereo)" then
+     Exit For
+     end if
+next
+     srcgrp.profile = profile
+' ** this is the original profile routine *
+' For Each profile In profilecoll
+' If profile.Name = "28.8 mono FM" Then
+' srcgrp.Profile = profile
+' End If
+
+' next
+' ****************
+' Make the source group active.
+
+srcgrpcoll.Active = srcgrp
+
+' Retrieve a file containing a list of string names of
+' audio-visual files. Supply the path to the file.
+' FileSystemObject is from the VBScript runtime
+' object library.
+
+Dim fso
+Dim PlaylistFile
+Set fso = WScript.CreateObject("Scripting.FileSystemObject")
+
+' ***** Put your text filename and path here *****
+Set PlaylistFile = fso.OpenTextFile("FileName.txt, Put",1,0)
+' *****************
+' Create a file object to store the encoded content.
+
+Dim outputfile
+Set outputfile = encoder.file
+
+' Loop through the playlist and encode each audio-visual file.
+
+Dim AVFile
+Do While PlaylistFile.AtEndOfStream <> True
+
+    ' Read the name of each audio-visual file from the playlist file.
+    AVFile = PlaylistFile.readline
+
+    ' Identify the file to Windows Media Encoder.
+    audsrc.SetInput(AVFile)
+    ' vidsrc.SetInput(AVFile)    
+    
+    ' Specify the name of the output file in which to store
+    ' encoded content.
+    outputfile.LocalFileName = Left(AVFile, Len(AVFile)-4) & ".wma"
+
+    ' Display status in CMD
+    WScript.Echo "Converting " & AVFile  
+    WScript.Echo "to " & outputfile.LocalFileName
+
+    ' Start Windows Media Encoder. It automatically stops at the end
+    ' of each audio-visual file.
+
+
+    'Start Windows Media Encoder
+
+    'encoder.AutoStop = True
+    'encoder.RemoteAdmin = True
+    'wscript.Sleep 1000
+    'encoder.PrepareToEncode(True)
+    encoder.Start
+
+    do until (encoder.RunState = WMENC_ENCODER_STOPPED)
+     WScript.Sleep 2000
+    loop
+Loop
+
+

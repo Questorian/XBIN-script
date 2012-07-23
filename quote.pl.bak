@@ -1,0 +1,49 @@
+# use strict;
+use Finance::YahooQuote;
+use Time::Piece;
+
+$Finance::YahooQuote::TIMEOUT = 20;
+
+#stuff we are looking for
+@held  = qw( GOOG SHLD SYNN.VX );
+@buy   = qw( MOT MXT UNH PNC MSFT INTC);
+@watch = qw( CHRN.SW LLOY.L YHOO EBAY AAPL TIL.F IJE.F TA6.F );
+@fx    = qw(EURUSD=X GBPUSD=X USDCHF=X GBPEUR=X EURCHF=X GBPCHF=X USDJPY=X  USDCAD=X);
+
+# NOKUSD=X AUDUSD=X NZDUSD=X CADUSD=X JPYUSD=X USDXAU=X CHFUSD=X USDEUR=X USDGBP=X USDNOK=X USDAUD=X USDNZD=X
+@commodities = qw( XAUUSD=X );
+
+@bonds    = qw( ^TNX ^FVX ^TYX );
+@markets  = qw( ^SPC ^DJI ^IXIC ^FTSE ^GDAXI ^SSMI ^FCHI );
+@indicies = qw( ^OSX );
+
+my $t = localtime;
+print "Date: ", $t->datetime;
+
+#lets get some quotes...
+lookup_and_display( \@held,        "Portfolio" );
+lookup_and_display( \@buy,         "Trading Radar" );
+lookup_and_display( \@watch,       "Watchlist" );
+lookup_and_display( \@fx,          "Forex" );
+lookup_and_display( \@commodities, "Comodities" );
+lookup_and_display( \@bonds,       "Bonds" );
+lookup_and_display( \@markets,     "Markets" );
+lookup_and_display( \@indicies,   "Indicies" );
+
+sub lookup_and_display() {
+    my ( $ref, $title ) = @_;
+    my @quote, $count = 0;
+
+    print "\n------------- $title ---------------";
+    foreach $symbol ( sort @$ref ) {
+        @quote = getonequote $symbol;    # Get a quote for a single symbol
+        printf "\n%4s. %-10s %15.40s %15s", ++$count, $quote[0],
+          commify( $quote[2] ), commify( $quote[7] );
+    }
+}
+
+sub commify {
+    my $text = reverse $_[0];
+    $text =~ s/(\d\d\d)(?=\d)(?!\d*\.)/$1,/g;
+    return scalar reverse $text;
+}

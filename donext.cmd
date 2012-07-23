@@ -1,0 +1,1 @@
+@call ed c:\temp\donext.txt

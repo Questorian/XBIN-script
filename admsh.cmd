@@ -1,0 +1,1 @@
+@runas /user:%computername%\administrator "CMD /K title AdmSh"

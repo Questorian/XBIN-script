@@ -1,0 +1,1 @@
+@del %TEMP%\NewPL.m3u

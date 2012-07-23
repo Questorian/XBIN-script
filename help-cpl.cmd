@@ -1,0 +1,1 @@
+@dir %windir%\system32\*.cpl /b /s

@@ -1,0 +1,1 @@
+@ start /D"C:\Program Files\DreamChess" "C:\Program Files\DreamChess\dreamchess.exe"

@@ -1,0 +1,1 @@
+C:\Windows\SysWOW64\cmd.exe /K ""C:\Program Files (x86)\VMware\VMware vSphere CLI\bin\vcli.bat" "C:\Program Files (x86)\VMware\VMware vSphere CLI\perl\bin" "C:\Program Files (x86)\VMware\VMware vSphere CLI\bin""

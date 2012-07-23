@@ -1,0 +1,4 @@
+@echo off
+set AWS_ACCESS_KEY_ID=AKIAJL7RSXWVCQVGMZMA
+set AWS_SECRET_ACCESS_KEY=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
+aws.pl --insecure-aws %1 %2 %3 %4 %5 %6 %7 %8 %9

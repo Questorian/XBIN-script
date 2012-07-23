@@ -1,0 +1,1 @@
+robocopy d:\ t:\ /MIR /R:5 /W:5 /xd d:\$RECYCLE.BIN

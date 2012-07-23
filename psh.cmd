@@ -1,0 +1,1 @@
+@perl -wnl %Q_DRV_XBIN%\script\psh.pl

@@ -1,0 +1,1 @@
+@start %Q_DRV_XBIN%\SudokuPortable\App\sudoku\sudoku.exe

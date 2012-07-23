@@ -1,0 +1,1 @@
+@ start "IE" "C:\Program Files\Internet Explorer\IEXPLORE.EXE" %1 %2 %3 %4 
